@@ -16,7 +16,9 @@ app.use(express.static("public"));
 
 
 // GET REQs
+// get req for "/" returns the index.html page
 app.get("/", (req, res) => { res.sendFile(path.join(__dirname, 'public/index.html')); });
+// get req for "/notes" returns the notes.html page
 app.get("/notes", (req, res) => { res.sendFile(path.join(__dirname, 'public/notes.html')); });
 
 
