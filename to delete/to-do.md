@@ -12,7 +12,6 @@
 
 On the back end, the application should include a `db.json` file that will be used to store and retrieve notes using the `fs` module.
 
-do i want/need modular routing?
 
 ## HEROKU
 1. get application sent when the heroku site is fixed
@@ -21,6 +20,3 @@ do i want/need modular routing?
 
 ## README
 1. do it
-
-## MOCKUP
-./Assets/11-express-homework-demo.gif
