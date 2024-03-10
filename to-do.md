@@ -1,9 +1,5 @@
 # TO-DO
 
-## SETUP
-1. add express.js
-2. add a gitignore
-
 ## NOTES STORAGE
 1. store and retrieve notes using the `fs` module into the `db.json` file
 2. Application back end must store notes that have a unique id in a JSON file.
