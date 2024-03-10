@@ -16,11 +16,18 @@ app.use(express.static("public"));
 
 
 // GET REQs
-// get req for "/" returns the index.html page
-app.get("/", (req, res) => { res.sendFile(path.join(__dirname, 'public/index.html')); });
-// get req for "/notes" returns the notes.html page
-app.get("/notes", (req, res) => { res.sendFile(path.join(__dirname, 'public/notes.html')); });
-
+// get req for "/" returns (responds with) the index.html page
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+// get req for "/notes" returns (responds with) the notes.html page
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/notes.html'));
+});
+// get req for "/api/notes" returns (responds with) each saved note in the dbFile as JSON.
+app.get("/api/notes", (req, res) => {
+    res.json(dbFile);
+});
 
 
 
