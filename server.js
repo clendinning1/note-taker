@@ -30,6 +30,14 @@ app.get("/api/notes", (req, res) => {
 });
 
 
+// POST REQ
+app.post("/api/notes", (req, res) => {
+
+});
+
+
+
+
 
 
 // from 11-express/01-ins_setup: "listen() method is responsible for listening for incoming connections on the specified port"
