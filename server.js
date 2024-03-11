@@ -41,32 +41,47 @@ app.get("/api/notes", (req, res) => {
 
 // POST REQ
 app.post("/api/notes", (req, res) => {
-    // Log that a POST request was received
+    // logs the req
     console.info(`${req.method} request received to add a note`);
 
-    // Destructuring assignment for the items in req.body
+    // requests the body of the req and extracts the title and text
     const { title, text } = req.body;
 
-    // If all the required properties are present
-    if (title && text ) {
-        // Variable for the object we will save
+    // if there's a title and text then...
+    if (title && text) {
+        // ... we create a newNote object
         const newNote = {
             title,
             text,
             note_id: uuid(),
         };
 
-        // Convert the data to a string so we can save it
-        const noteString = JSON.stringify(newNote);
+        // when it reads the file it's either going to pass an error or the data inside the file
+        fs.readFile(`./db/db.json`, (err, data) => {
+            // when there's an error, throw it & kill prgrm
+            if (err) {
+                throw new Error(err);
+            }
 
-        // Write the string to a file
-        fs.writeFile(`./db/db.json`, noteString, (err) =>
-            err
-                ? console.error(err)
-                : console.log(
-                    `Note for ${newNote.product} has been written to JSON file`
-                )
-        );
+            // when there's data, add it to the new note
+            const parsedNotes = JSON.parse(data);
+            if (parsedNotes.length) {
+                parsedNotes.push(newNote);
+            }
+
+            // Convert the data to a string so we can save it to a file
+            const noteString = JSON.stringify(parsedNotes);
+
+            // write to the file
+            fs.writeFile(`./db/db.json`, noteString, (err) =>
+                err
+                    ? console.error(err)
+                    : console.log(
+                        `Note titled ${newNote.title} has been added to db.json`
+                    )
+            );
+
+        });
 
         const response = {
             status: 'success',
