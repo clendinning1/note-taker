@@ -60,7 +60,7 @@ app.post("/api/notes", (req, res) => {
         const noteString = JSON.stringify(newNote);
 
         // Write the string to a file
-        fs.writeFile(`./db/${newNote.product}.json`, noteString, (err) =>
+        fs.writeFile(`./db/db.json`, noteString, (err) =>
             err
                 ? console.error(err)
                 : console.log(
