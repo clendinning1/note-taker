@@ -17,7 +17,7 @@ const dbFile = require("./db/db.json");
 // middleware for parsing JSON
 app.use(express.json());
 // middleware for parsing URL encoded data
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // directing things to the public folder
 app.use(express.static("public"));
@@ -41,22 +41,43 @@ app.get("/api/notes", (req, res) => {
 
 // POST REQ
 app.post("/api/notes", (req, res) => {
-    // // Prepare a response object to send back to the client
-    // let response;
+    // Log that a POST request was received
+    console.info(`${req.method} request received to add a note`);
 
-    // // Check if there is anything in the response body
-    // if (req.body && req.body.product) {
-    //     response = {
-    //         status: 'success',
-    //         data: req.body,
-    //     };
-    //     res.json(`Review for ${response.data.product} has been added!`);
-    // } else {
-    //     res.json('Request body must at least contain a product name');
-    // }
+    // Destructuring assignment for the items in req.body
+    const { title, text } = req.body;
 
-    // // Log the response body to the console
-    // console.log(req.body);
+    // If all the required properties are present
+    if (title && text ) {
+        // Variable for the object we will save
+        const newNote = {
+            title,
+            text,
+            note_id: uuid(),
+        };
+
+        // Convert the data to a string so we can save it
+        const noteString = JSON.stringify(newNote);
+
+        // Write the string to a file
+        fs.writeFile(`./db/${newNote.product}.json`, noteString, (err) =>
+            err
+                ? console.error(err)
+                : console.log(
+                    `Note for ${newNote.product} has been written to JSON file`
+                )
+        );
+
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+
+        console.log(response);
+        res.status(201).json(response);
+    } else {
+        res.status(500).json('Error in posting new note');
+    }
 });
 
 
