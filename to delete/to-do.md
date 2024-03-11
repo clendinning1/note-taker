@@ -8,5 +8,8 @@
 ## README
 1. do it
 
-## MISC
-1. make sure the notes sidebar is working
+## BUGS
+1. when adding a new note, it doesn't instantly update the sidebar.
+=> the additions only update when you turn the server off and back on again!
+	is this something that heroku will fix?
+2. you can't click on the sidebar notes to view them.
