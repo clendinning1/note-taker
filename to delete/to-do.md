@@ -1,16 +1,5 @@
 # TO-DO
 
-## NOTES STORAGE
-1. store and retrieve notes using the `fs` module into the `db.json` file
-2. Application back end must store notes that have a unique id in a JSON file.
-
-## ROUTES
-3. (api route) `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
-4. (api route) `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-
-On the back end, the application should include a `db.json` file that will be used to store and retrieve notes using the `fs` module.
-
-
 ## HEROKU
 1. get application sent when the heroku site is fixed
 2. finish heroku setup
@@ -18,3 +7,9 @@ On the back end, the application should include a `db.json` file that will be us
 
 ## README
 1. do it
+
+## BUGS
+1. when adding a new note, it doesn't instantly update the sidebar.
+=> the additions only update when you turn the server off and back on again!
+	is this something that heroku will fix?
+2. you can't click on the sidebar notes to view them.
