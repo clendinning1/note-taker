@@ -57,17 +57,16 @@ app.post("/api/notes", (req, res) => {
         };
 
         // when it reads the file it's either going to pass an error or the data inside the file
-        fs.readFile(`./db/db.json`, (err, data) => {
+        fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
             // when there's an error, throw it & kill prgrm
             if (err) {
                 throw new Error(err);
             }
 
-            // when there's data, add it to the new note
-            const parsedNotes = JSON.parse(data);
-            if (parsedNotes.length) {
-                parsedNotes.push(newNote);
-            }
+            // if there's data, parse it. if not, default to empty array
+            const parsedNotes = data? JSON.parse(data) : [];
+            // push parsed notes to newNote
+            parsedNotes.push(newNote);
 
             // Convert the data to a string so we can save it to a file
             const noteString = JSON.stringify(parsedNotes);
