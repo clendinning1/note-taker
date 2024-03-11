@@ -6,7 +6,7 @@
 3. deploy it to heroku
 
 ## README
-1. do it
+1. link deployed site from heroku
 
 ## BUGS
 1. when adding a new note, it doesn't instantly update the sidebar.
